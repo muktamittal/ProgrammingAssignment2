@@ -1,4 +1,4 @@
-#function to create matrix
+#function to create inverse matrix
 makeCacheMatrix <- function(x = matrix()) {
     inv <- NULL
     set <- function(y) {
@@ -11,7 +11,7 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
 }
 
-#function to check if inverse exists
+#function to check if inverse exists and reuse the same 
 cacheSolve <- function(x, ...) {
     inv <- x$getinverse()
     if(!is.null(inv)) {
@@ -44,5 +44,11 @@ cacheSolve <- function(x, ...) {
 #[1,] -0.2  0.6
 #[2,]  0.4 -0.2
  
-
+#Also tested it with 4*4 matrix
+#> w = rnorm(16)
+#> a = matrix(w, nrow=4, ncol=4)
+#> z = makeCacheMatrix(a)
+#> cacheSolve(z)
+#> cacheSolve(z)
+#getting cached data.
 
